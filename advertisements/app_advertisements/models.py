@@ -39,3 +39,11 @@ class Advertisement(models.Model):
                 '<span style="color:red; font-weight: bold;">Сегодня в {}</span>', updated_date
             )
         return self.updated_at.strftime('%d.%m.%Y в %H:%M:%S')
+
+    @admin.display(description="фото")
+    def get_html_image(self):
+        if self.image:
+            return format_html(
+                '<img src="{url}" style="max-width: 80px; max-height: 80px;"', url=self.image.url
+            )
+
